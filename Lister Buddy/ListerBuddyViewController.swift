@@ -10,7 +10,7 @@ import UIKit
 class ListerBuddyViewController: UITableViewController {
 
     
-    let items = ["Jupiters","Legacy","Unleashed"]
+    var items = ["Jupiters","Legacy","Unleashed"]
     
     
     override func viewDidLoad() {
@@ -46,6 +46,32 @@ class ListerBuddyViewController: UITableViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    
+    //MARK - Add new item
+    
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        
+        var newText = UITextField()
+        
+        let alert = UIAlertController(title: "Add item to list", message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Add item", style: .default) { (action) in
+            self.items.append(newText.text!)
+            self.tableView.reloadData()
+        }
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Create new item"
+            newText = alertTextField
+            
+        }
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    
+    
     
 }
 
