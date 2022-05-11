@@ -9,12 +9,16 @@ import UIKit
 
 class ListerBuddyViewController: UITableViewController {
 
-    
+    let defaults = UserDefaults.standard
     var items = ["Jupiters","Legacy","Unleashed"]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let  item = defaults.array(forKey: "listerBuddyArray") as? [String]{
+            
+            items = item
+        }
 
     }
 //MARK - Table View Datasource Methods
@@ -58,6 +62,9 @@ class ListerBuddyViewController: UITableViewController {
         
         let action = UIAlertAction(title: "Add item", style: .default) { (action) in
             self.items.append(newText.text!)
+            
+            self.defaults.set(self.items, forKey: "listerBuddyArray")
+            
             self.tableView.reloadData()
         }
         alert.addTextField { (alertTextField) in
