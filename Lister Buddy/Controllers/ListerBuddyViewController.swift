@@ -7,15 +7,33 @@
 
 import UIKit
 
+
 class ListerBuddyViewController: UITableViewController {
 
     let defaults = UserDefaults.standard
-    var items = ["Jupiters","Legacy","Unleashed"]
+    var items = [ItemData]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let  item = defaults.array(forKey: "listerBuddyArray") as? [String]{
+        
+        
+        let newItem1 = ItemData()
+        newItem1.title = "google"
+        items.append(newItem1)
+        
+        let newItem2 = ItemData()
+        newItem2.title = "google"
+        items.append(newItem2)
+        
+        let newItem3 = ItemData()
+        newItem3.title = "google"
+        items.append(newItem3)
+        
+        
+       
+        
+        if let  item = defaults.array(forKey: "listerBuddyArray") as? [ItemData]{
             
             items = item
         }
@@ -25,7 +43,18 @@ class ListerBuddyViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListerBuddyItemCell", for: indexPath)
-        cell.textLabel?.text = items[indexPath.row]
+        
+        let anotherItem = items[indexPath.row]
+        
+        
+        cell.textLabel?.text = anotherItem.title
+        
+        //Ternary operator ... using instead of if else statement
+        //value = condition ? valueIfTrue : valueIfFalse
+        //anotherItem initially true
+    
+        cell.accessoryType = anotherItem.done ? .checkmark : .none
+        
         return cell
     }
     
@@ -38,15 +67,9 @@ class ListerBuddyViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //print(items[indexPath.row])
         
-       
+        items[indexPath.row].done = !items[indexPath.row].done
         
-        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark{
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-            
-        }
-        else {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        }
+        tableView.reloadData()
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -61,7 +84,12 @@ class ListerBuddyViewController: UITableViewController {
         let alert = UIAlertController(title: "Add item to list", message: "", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Add item", style: .default) { (action) in
-            self.items.append(newText.text!)
+            
+            
+            let   newItem = ItemData()
+            newItem.title = newText.text!
+            
+            self.items.append(newItem)
             
             self.defaults.set(self.items, forKey: "listerBuddyArray")
             

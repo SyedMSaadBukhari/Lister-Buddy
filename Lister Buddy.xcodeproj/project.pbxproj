@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B93769ED282E089E00511CD3 /* ItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93769EC282E089E00511CD3 /* ItemData.swift */; };
 		B9814A4E2828C73000051923 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9814A4D2828C73000051923 /* AppDelegate.swift */; };
 		B9814A502828C73000051923 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9814A4F2828C73000051923 /* SceneDelegate.swift */; };
 		B9814A522828C73000051923 /* ListerBuddyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9814A512828C73000051923 /* ListerBuddyViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B93769EC282E089E00511CD3 /* ItemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemData.swift; sourceTree = "<group>"; };
 		B9814A4A2828C73000051923 /* Lister Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lister Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9814A4D2828C73000051923 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9814A4F2828C73000051923 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +39,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B93769EE282E08A500511CD3 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				B93769EC282E089E00511CD3 /* ItemData.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		B93769EF282E08BB00511CD3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B9814A512828C73000051923 /* ListerBuddyViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B93769F0282E08CC00511CD3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B9814A532828C73000051923 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B93769F2282E099E00511CD3 /* SopportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				B9814A582828C73400051923 /* LaunchScreen.storyboard */,
+				B9814A562828C73400051923 /* Assets.xcassets */,
+			);
+			path = SopportingFiles;
+			sourceTree = "<group>";
+		};
 		B9814A412828C73000051923 = {
 			isa = PBXGroup;
 			children = (
@@ -58,10 +93,10 @@
 			children = (
 				B9814A4D2828C73000051923 /* AppDelegate.swift */,
 				B9814A4F2828C73000051923 /* SceneDelegate.swift */,
-				B9814A512828C73000051923 /* ListerBuddyViewController.swift */,
-				B9814A532828C73000051923 /* Main.storyboard */,
-				B9814A562828C73400051923 /* Assets.xcassets */,
-				B9814A582828C73400051923 /* LaunchScreen.storyboard */,
+				B93769EF282E08BB00511CD3 /* Controllers */,
+				B93769F0282E08CC00511CD3 /* Views */,
+				B93769EE282E08A500511CD3 /* DataModel */,
+				B93769F2282E099E00511CD3 /* SopportingFiles */,
 				B9814A5B2828C73400051923 /* Info.plist */,
 			);
 			path = "Lister Buddy";
@@ -140,6 +175,7 @@
 			files = (
 				B9814A522828C73000051923 /* ListerBuddyViewController.swift in Sources */,
 				B9814A4E2828C73000051923 /* AppDelegate.swift in Sources */,
+				B93769ED282E089E00511CD3 /* ItemData.swift in Sources */,
 				B9814A502828C73000051923 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
