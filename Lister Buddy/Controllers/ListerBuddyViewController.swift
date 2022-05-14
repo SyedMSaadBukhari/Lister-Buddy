@@ -10,33 +10,19 @@ import UIKit
 
 class ListerBuddyViewController: UITableViewController {
 
-    let defaults = UserDefaults.standard
+  
     var items = [ItemData]()
-    
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        let newItem1 = ItemData()
-        newItem1.title = "google"
-        items.append(newItem1)
-        
-        let newItem2 = ItemData()
-        newItem2.title = "google"
-        items.append(newItem2)
-        
-        let newItem3 = ItemData()
-        newItem3.title = "google"
-        items.append(newItem3)
         
         
-       
         
-        if let  item = defaults.array(forKey: "listerBuddyArray") as? [ItemData]{
-            
-            items = item
-        }
+    
+        dataLoader()
 
     }
 //MARK - Table View Datasource Methods
@@ -69,7 +55,8 @@ class ListerBuddyViewController: UITableViewController {
         
         items[indexPath.row].done = !items[indexPath.row].done
         
-        tableView.reloadData()
+        saveItems()
+        
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -91,9 +78,8 @@ class ListerBuddyViewController: UITableViewController {
             
             self.items.append(newItem)
             
-            self.defaults.set(self.items, forKey: "listerBuddyArray")
+            self.saveItems()
             
-            self.tableView.reloadData()
         }
         alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "Create new item"
@@ -105,8 +91,39 @@ class ListerBuddyViewController: UITableViewController {
         
     }
     
+    //MARK - model Manupulation Methods
+    
+    func saveItems(){
+        
+        //encoder
+        let encoder = PropertyListEncoder()
+          
+          do {
+              let data = try encoder.encode(items)
+              try data.write(to: dataFilePath!)
+          }
+          catch {
+              print("Error -> Item Array  \(error)")
+          }
+        self.tableView.reloadData()
+    }
     
     
+    func dataLoader(){
+        
+        if let data = try?  Data(contentsOf: dataFilePath!){
+        //decoder
+            let decoder = PropertyListDecoder()
+        do {
+            items = try decoder.decode([ItemData].self, from: data)
+        } catch {
+            print("Error decoding,  \(error)")
+        }
+        }
+        
+        
+        
+    }
     
 }
 
